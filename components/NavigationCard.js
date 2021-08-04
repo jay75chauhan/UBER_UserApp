@@ -48,7 +48,7 @@ const NavigationCard = () => {
             }}
           />
         </View>
-        <View style={tw`mx-5`}>
+        <View style={tw`mx-5 `}>
           <NavFavourites />
         </View>
       </View>
@@ -62,6 +62,7 @@ const NavigationCard = () => {
           <Text style={tw`text-white text-center `}>Rides</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          // onPress={alert("This function is currently not available")}
           style={tw`flex flex-row w-24 px-4 py-3 rounded-full justify-between bg-gray-100 shadow`}
         >
           <Icon

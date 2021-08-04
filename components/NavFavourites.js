@@ -28,7 +28,7 @@ const data = [
 const NavFavourites = () => {
   return (
     <FlatList
-      style={tw`mt-3 overflow-hidden `}
+      style={tw`overflow-hidden mt-3`}
       data={data}
       keyExtractor={(item) => item.id}
       ItemSeparatorComponent={() => (
@@ -36,7 +36,7 @@ const NavFavourites = () => {
       )}
       renderItem={({ item: { location, icon, destination } }) => (
         <TouchableOpacity
-          style={tw`flex-row items-center p-5 bg-gray-50 rounded-xl   mb-2 shadow-sm`}
+          style={tw`flex-row items-center py-3 px-5 bg-gray-100 rounded-xl   mb-5 shadow-sm`}
         >
           <Icon
             style={tw`mr-4 rounded-full bg-gray-300 p-3`}

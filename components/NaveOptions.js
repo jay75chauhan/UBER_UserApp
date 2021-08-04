@@ -34,16 +34,17 @@ const NaveOptions = () => {
 
   return (
     <FlatList
+      style={tw`mb-3`}
       data={data}
       horizontal
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <TouchableOpacity
           onPress={() => navigation.navigate(item.screen)}
-          style={tw`p-2 pl-6 pb-8 pt-4  bg-gray-200 m-2 w-40 rounded-md shadow-md`}
+          style={tw`p-2 pl-6 pb-8 pt-4   bg-gray-200 m-2 w-36 rounded-md shadow-md`}
           disabled={!origin}
         >
-          <View style={tw`${!origin && `opacity-20`}`}>
+          <View style={tw`${!origin && `opacity-30`}`}>
             <Image
               style={{ width: 120, height: 120, resizeMode: "contain" }}
               source={{
