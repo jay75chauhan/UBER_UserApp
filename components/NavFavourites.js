@@ -28,22 +28,22 @@ const data = [
 const NavFavourites = () => {
   return (
     <FlatList
-      style={tw`overflow-hidden mt-3`}
+      style={tw`overflow-hidden mt-2 bg-white`}
       data={data}
       keyExtractor={(item) => item.id}
       ItemSeparatorComponent={() => (
-        <View style={[tw`bg-gray-200`, { height: 0.5 }]} />
+        <View style={[tw`bg-white`, { height: 0.5 }]} />
       )}
       renderItem={({ item: { location, icon, destination } }) => (
         <TouchableOpacity
-          style={tw`flex-row items-center py-3 px-5 bg-gray-100 rounded-xl   mb-5 shadow-sm`}
+          style={tw`flex-row items-center py-3 px-5 bg-gray-100    m-2 rounded-md shadow-md`}
         >
           <Icon
-            style={tw`mr-4 rounded-full bg-gray-300 p-3`}
+            style={tw`mr-4 rounded-full bg-gray-400 p-3`}
             name={icon}
             type="ionicon"
             color="white"
-            size={18}
+            size={20}
           />
           <View>
             <Text style={tw`font-semibold text-lg`}>{location}</Text>

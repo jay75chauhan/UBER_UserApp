@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { useDispatch, useSelector } from "react-redux";
 import tw from "tailwind-react-native-classnames";
@@ -10,7 +10,6 @@ import {
 } from "../slices/navSlice";
 import MapViewDirections from "react-native-maps-directions";
 import { GOOGLE_MAP_KEY } from "@env";
-import { or } from "react-native-reanimated";
 
 const Map = () => {
   const origin = useSelector(selectOrigin);
@@ -24,7 +23,7 @@ const Map = () => {
     //Zoom & fit to marker
 
     mapRef.current.fitToSuppliedMarkers(["origin", "destination"], {
-      edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
+      edgePadding: { top: 200, right: 50, bottom: 50, left: 50 },
     });
   }, [origin, destination]);
 
@@ -34,7 +33,7 @@ const Map = () => {
 
     const getTravelTime = async () => {
       fetch(
-        `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin.description}&destinations=${destination.description}&key=${GOOGLE_MAP_KEY}`
+        `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin?.description}&destinations=${destination?.description}&key=${GOOGLE_MAP_KEY}`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -48,7 +47,7 @@ const Map = () => {
   return (
     <MapView
       ref={mapRef}
-      style={tw`flex-1`}
+      style={tw`flex-1 `}
       mapType="mutedStandard"
       initialRegion={{
         latitude: origin.location.lat,
@@ -64,7 +63,7 @@ const Map = () => {
           destination={destination.description}
           apikey={GOOGLE_MAP_KEY}
           strokeColor="black"
-          strokeWidth={3}
+          strokeWidth={5}
         />
       )}
 
@@ -77,7 +76,12 @@ const Map = () => {
           title="Origin"
           description={origin.description}
           identifier="origin"
-        />
+        >
+          {/* <Image
+            source={require("../assets/images/red.png")}
+            style={{ width: 60, height: 60, resizeMode: "contain" }}
+          /> */}
+        </Marker>
       )}
       {destination?.location && (
         <Marker
@@ -88,12 +92,15 @@ const Map = () => {
           title="Destination"
           description={destination.description}
           identifier="destination"
-        />
+        >
+          {/* <Image
+            source={require("../assets/images/top-UberX.png")}
+            style={{ width: 70, height: 70, resizeMode: "contain" }}
+          /> */}
+        </Marker>
       )}
     </MapView>
   );
 };
 
 export default Map;
-
-const styles = StyleSheet.create({});

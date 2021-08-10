@@ -60,7 +60,9 @@ const RideOptionsCard = () => {
             size={37}
           />
         </TouchableOpacity>
-        <Text style={tw`text-center py-4 text-xl text-black font-bold`}>
+        <Text
+          style={tw`text-center py-4 text-xl bg-gray-50 text-black font-normal`}
+        >
           {" "}
           Select a Ride - {travelTimeInformation?.distance?.text}{" "}
         </Text>
@@ -96,7 +98,7 @@ const RideOptionsCard = () => {
                   style: "currency",
                   currency: "INR",
                 }).format(
-                  (travelTimeInformation?.duration.value *
+                  (travelTimeInformation?.duration?.value *
                     SURGE_CHARGE_RATE *
                     multiplier) /
                     100

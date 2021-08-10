@@ -15,6 +15,7 @@ import { setDestination } from "../slices/navSlice";
 import { useNavigation } from "@react-navigation/native";
 import NavFavourites from "./NavFavourites";
 import { Icon } from "react-native-elements";
+import PlaceRow from "./PlaceRow";
 
 const NavigationCard = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const NavigationCard = () => {
               navigation.navigate("RideOptionsCard");
             }}
             fetchDetails={true}
+            renderRow={(data) => <PlaceRow data={data} />}
             returnKeyType={"search"}
             enablePoweredByContainer={false}
             query={{

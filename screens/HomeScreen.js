@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import NaveOptions from "../components/NaveOptions";
@@ -8,8 +8,24 @@ import { useDispatch } from "react-redux";
 import { setDestination, setOrigin } from "../slices/navSlice";
 import NavFavourites from "../components/NavFavourites";
 
+import PlaceRow from "../components/PlaceRow";
+import * as Location from "expo-location";
+
 const HomeScreen = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
 
   return (
     <SafeAreaView style={tw`bg-white h-full`}>
@@ -63,6 +79,8 @@ const HomeScreen = () => {
           debounce={400}
           currentLocation={true}
           currentLocationLabel="Current location"
+          renderRow={(data) => <PlaceRow data={data} />}
+          renderDescription={(data) => data.description || data.vicinity}
         />
         <NaveOptions />
         <NavFavourites />
@@ -72,5 +90,3 @@ const HomeScreen = () => {
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({});

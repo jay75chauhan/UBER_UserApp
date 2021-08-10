@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "this is a uber user app clone",
+    "githubUrl": "https://github.com/jay75chauhan/UBER_UserApp"
   }
 }
